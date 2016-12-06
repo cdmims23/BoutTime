@@ -7,3 +7,52 @@
 //
 
 import Foundation
+
+struct EventModel {
+    let event: String
+    let eventYear: Int
+    let eventURL: String
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
