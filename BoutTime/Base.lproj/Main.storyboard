@@ -88,6 +88,7 @@
                                 <rect key="frame" x="317" y="436" width="33" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="up_full"/>
+                                <state key="selected" image="up_full_selected"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arx-ZZ-sS3">
                                 <rect key="frame" x="87" y="575" width="200" height="62"/>
@@ -112,6 +113,19 @@
                             <constraint firstItem="RVv-dh-gMj" firstAttribute="leading" secondItem="Lyk-Qp-NAx" secondAttribute="leading" id="uKl-MZ-lDe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstLabel" destination="ClH-QG-zzI" id="3V3-Z4-phQ"/>
+                        <outlet property="firstLabelDown" destination="w15-16-jI3" id="qdx-4X-qmW"/>
+                        <outlet property="fourthLabel" destination="D8q-Ph-cqA" id="az3-Mu-rtC"/>
+                        <outlet property="fourthLabelUp" destination="A95-jw-ZKD" id="dH1-Nd-MSZ"/>
+                        <outlet property="nextRoundButton" destination="arx-ZZ-sS3" id="PuZ-4w-FRm"/>
+                        <outlet property="secondLabel" destination="Lyk-Qp-NAx" id="Uie-Kt-QTV"/>
+                        <outlet property="secondLabelDown" destination="f8I-JQ-MyY" id="DJz-ME-FuB"/>
+                        <outlet property="secondLabelUp" destination="6wi-m5-lqS" id="ayb-FK-Zi4"/>
+                        <outlet property="thirdLabel" destination="RVv-dh-gMj" id="57a-3l-3hK"/>
+                        <outlet property="thirdLabelDown" destination="OpF-EJ-qXi" id="NFK-gm-BI2"/>
+                        <outlet property="thirdLabelUp" destination="tCV-bL-GRq" id="rNZ-1x-qi2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,6 +136,7 @@
         <image name="down_half" width="158" height="229"/>
         <image name="next_round_success" width="558" height="142"/>
         <image name="up_full" width="158" height="457"/>
+        <image name="up_full_selected" width="158" height="457"/>
         <image name="up_half" width="158" height="229"/>
     </resources>
 </document>

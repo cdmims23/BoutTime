@@ -7,10 +7,20 @@
 //
 
 import Foundation
+import GameKit
 
-class GameModel {
-    
+enum Direction {
+    case up
+    case down
 }
+
+/*class GameModel {
+    let events: [EventModel]
+    
+    init() {
+        <#statements#>
+    }
+}*/
 
 
 
