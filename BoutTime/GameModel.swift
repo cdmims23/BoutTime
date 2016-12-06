@@ -47,6 +47,10 @@ class GameModel {
         labelTwo.text = textOne
     }
     
+    func findYear(text: String) -> Int {
+       
+    }
+    
     func scoreRound() {
         
     }
