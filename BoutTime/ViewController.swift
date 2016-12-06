@@ -36,10 +36,22 @@ class ViewController: UIViewController {
     }
     
     func displayEvents() {
-        game.getEvent(firstLabel: firstLabel, secondLabel: secondLabel, thirdLabel: thirdLabel, fourthLabel: fourthLabel)
+        firstLabel.text = game.getEvent().event
+        secondLabel.text = game.getEvent().event
+        thirdLabel.text = game.getEvent().event
+        fourthLabel.text = game.getEvent().event
     }
 
-    @IBAction func switchButton(_ sender: Any) {
+    @IBAction func switchButton(_ sender: UIButton) {
+        switch sender {
+        case firstLabelDown: game.switchLabel(labelOne: firstLabel, labelTwo: secondLabel)
+        case secondLabelUp: game.switchLabel(labelOne: secondLabel, labelTwo: firstLabel)
+        case secondLabelDown: game.switchLabel(labelOne: secondLabel, labelTwo: thirdLabel)
+        case thirdLabelUp: game.switchLabel(labelOne: thirdLabel, labelTwo: secondLabel)
+        case thirdLabelDown: game.switchLabel(labelOne: thirdLabel, labelTwo: fourthLabel)
+        case fourthLabelUp: game.switchLabel(labelOne: fourthLabel, labelTwo: thirdLabel)
+        default: print("No selection")
+        }
     }
 
 }

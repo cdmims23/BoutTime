@@ -33,11 +33,21 @@ class GameModel {
         return randomNumber
     }
     
-    func getEvent(firstLabel: UILabel, secondLabel: UILabel, thirdLabel: UILabel, fourthLabel: UILabel) {
-        firstLabel.text = events[randomEvent()].event
-        secondLabel.text = events[randomEvent()].event
-        thirdLabel.text = events[randomEvent()].event
-        fourthLabel.text = events[randomEvent()].event
+    func getEvent() -> EventModel {
+        let event = events[randomEvent()]
+        
+        return event
+    }
+    
+    func switchLabel(labelOne: UILabel, labelTwo: UILabel) {
+        let textOne = labelOne.text
+        let textTwo = labelTwo.text
+        
+        labelOne.text = textTwo
+        labelTwo.text = textOne
+    }
+    
+    func scoreRound() {
         
     }
 }
