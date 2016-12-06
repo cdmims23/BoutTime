@@ -22,8 +22,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var fourthLabel: UILabel!
     @IBOutlet weak var nextRoundButton: UIButton!
     
+    let game = GameModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        displayEvents()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -31,7 +34,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func displayEvents() {
+        game.getEvent(firstLabel: firstLabel, secondLabel: secondLabel, thirdLabel: thirdLabel, fourthLabel: fourthLabel)
+    }
 
+    @IBAction func switchButton(_ sender: Any) {
+    }
 
 }
 
