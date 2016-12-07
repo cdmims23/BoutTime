@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     var timer: Timer = Timer()
     var time = 0
     var correctORder: [EventModel] = []
+    var answerArray: [EventModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,7 @@ class ViewController: UIViewController {
     }
     
     func checkRound(checkArray: [EventModel]) {
-        if firstLabel.text == checkArray[0].event && secondLabel.text == checkArray[1].event && thirdLabel.text == checkArray[2].event && fourthLabel.text == checkArray[3].event{
+        if firstLabel.text == correctORder[0].event && secondLabel.text == correctORder[1].event && thirdLabel.text == correctORder[2].event && fourthLabel.text == correctORder[3].event{
             nextRoundButton.setImage(UIImage(named: "next_round_success") , for: .normal)
             nextRoundButton.isHidden = false
         } else {
@@ -72,7 +73,7 @@ class ViewController: UIViewController {
         thirdLabel.text = thirdEvent.event
         fourthLabel.text = fourthEvent.event
         
-        let eventArray = [firstEvent, secondEvent, thirdEvent, firstEvent]
+        let eventArray = [firstEvent, secondEvent, thirdEvent, fourthEvent]
         
         return eventArray
         
@@ -92,7 +93,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func submitgame(_ sender: Any) {
-        
+        time = 0
+        newRound()
     }
     
     func startTimer() {
