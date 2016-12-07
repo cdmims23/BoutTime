@@ -114,10 +114,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arx-ZZ-sS3">
-                                <rect key="frame" x="87" y="575" width="200" height="62"/>
+                                <rect key="frame" x="87" y="544" width="200" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="next_round_success"/>
+                                <state key="normal" title="Button" image="play_again"/>
+                                <connections>
+                                    <action selector="submitgame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rj6-yn-UwZ"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KJ-3i-Krn">
+                                <rect key="frame" x="25" y="614" width="334" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.21002846959999999" green="0.58221989870000002" blue="0.73248153920000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.16078431372549018" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -148,10 +158,12 @@
                         <outlet property="thirdLabel" destination="RVv-dh-gMj" id="57a-3l-3hK"/>
                         <outlet property="thirdLabelDown" destination="OpF-EJ-qXi" id="NFK-gm-BI2"/>
                         <outlet property="thirdLabelUp" destination="tCV-bL-GRq" id="rNZ-1x-qi2"/>
+                        <outlet property="timerLabel" destination="1KJ-3i-Krn" id="FXm-7e-uj5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="129.98500749625188"/>
         </scene>
     </scenes>
     <resources>
@@ -159,7 +171,7 @@
         <image name="down_full_selected" width="158" height="457"/>
         <image name="down_half" width="158" height="229"/>
         <image name="down_half_selected" width="158" height="229"/>
-        <image name="next_round_success" width="558" height="142"/>
+        <image name="play_again" width="450" height="142"/>
         <image name="up_full" width="158" height="457"/>
         <image name="up_full_selected" width="158" height="457"/>
         <image name="up_half" width="158" height="229"/>

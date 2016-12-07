@@ -21,27 +21,64 @@ class ViewController: UIViewController {
     @IBOutlet weak var thirdLabel: UILabel!
     @IBOutlet weak var fourthLabel: UILabel!
     @IBOutlet weak var nextRoundButton: UIButton!
+    @IBOutlet weak var timerLabel: UILabel!
     
     let game = GameModel()
+    let rounds = 6
+    var roundsPlayed = 0
+    var timer: Timer = Timer()
+    var time = 0
+    var correctORder: [EventModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayEvents()
         // Do any additional setup after loading the view, typically from a nib.
+        newRound()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func displayEvents() {
-        firstLabel.text = game.getEvent().event
-        secondLabel.text = game.getEvent().event
-        thirdLabel.text = game.getEvent().event
-        fourthLabel.text = game.getEvent().event
+    func newRound() {
+        if roundsPlayed <= rounds {
+            startTimer()
+            let answerArrray = displayEvents()
+            correctORder = game.correctOrder(events: answerArrray)
+            updateTimer()
+            nextRoundButton.isHidden = true
+        }
     }
-
+    
+    func checkRound(checkArray: [EventModel]) {
+        if firstLabel.text == checkArray[0].event && secondLabel.text == checkArray[1].event && thirdLabel.text == checkArray[2].event && fourthLabel.text == checkArray[3].event{
+            nextRoundButton.setImage(UIImage(named: "next_round_success") , for: .normal)
+            nextRoundButton.isHidden = false
+        } else {
+            nextRoundButton.setImage(UIImage(named: "next_round_fail"), for: .normal)
+            nextRoundButton.isHidden = false
+        }
+    }
+    
+    func displayEvents () -> [EventModel] {
+        let firstEvent = game.getEvent()
+        let secondEvent = game.getEvent()
+        let thirdEvent = game.getEvent()
+        let fourthEvent = game.getEvent()
+        
+        firstLabel.text = firstEvent.event
+        secondLabel.text = secondEvent.event
+        thirdLabel.text = thirdEvent.event
+        fourthLabel.text = fourthEvent.event
+        
+        let eventArray = [firstEvent, secondEvent, thirdEvent, firstEvent]
+        
+        return eventArray
+        
+        
+    }
+    
     @IBAction func switchButton(_ sender: UIButton) {
         switch sender {
         case firstLabelDown: game.switchLabel(labelOne: firstLabel, labelTwo: secondLabel)
@@ -54,5 +91,32 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func submitgame(_ sender: Any) {
+        
+    }
+    
+    func startTimer() {
+        //Start the timer
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    func updateTimer() {
+        //Update the timer label
+        time += 1
+        timerLabel.text = String(60 - time)
+        
+        if time == 60 {
+            //TIMES UP! Invalidate the timer and make the round end
+            timer.invalidate()
+            endRound()
+            
+        }
+    }
+    
+    func endRound() {
+        checkRound(checkArray: correctORder)
+        timerLabel.text = "\(correctORder[2].event) \(correctORder[3].event)"
+        roundsPlayed += 1
+    }
 }
 
