@@ -11,7 +11,8 @@ import Foundation
 struct EventModel {
     let event: String
     let eventYear: Int
-   
+    let eventURL: String
+    
     func getYear() -> Int {
     return eventYear
     }

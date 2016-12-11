@@ -28,7 +28,6 @@ class ViewController: UIViewController {
     var roundsPlayed = 0
     var timer: Timer = Timer()
     var time = 0
-    var score: Int = 0
     var correctORder: [EventModel] = []
     var answerArray: [EventModel] = []
     
@@ -50,17 +49,13 @@ class ViewController: UIViewController {
             correctORder = game.correctOrder(events: answerArrray)
             updateTimer()
             nextRoundButton.isHidden = true
-        } else {
-            endGame()
-            
         }
     }
     
     func checkRound(checkArray: [EventModel]) {
-        if firstLabel.text == correctORder[0].event && secondLabel.text == correctORder[1].event && thirdLabel.text == correctORder[2].event && fourthLabel.text == correctORder[3].event {
+        if firstLabel.text == correctORder[0].event && secondLabel.text == correctORder[1].event && thirdLabel.text == correctORder[2].event && fourthLabel.text == correctORder[3].event{
             nextRoundButton.setImage(UIImage(named: "next_round_success") , for: .normal)
             nextRoundButton.isHidden = false
-            score += 1
         } else {
             nextRoundButton.setImage(UIImage(named: "next_round_fail"), for: .normal)
             nextRoundButton.isHidden = false
@@ -100,10 +95,6 @@ class ViewController: UIViewController {
     @IBAction func submitgame(_ sender: Any) {
         time = 0
         newRound()
-        
-        if nextRoundButton.image(for: .normal) == UIImage(named: "play_again") {
-            game.removeEvents()
-        }
     }
     
     func startTimer() {
@@ -129,25 +120,5 @@ class ViewController: UIViewController {
         timerLabel.text = "TIMES UP!"
         roundsPlayed += 1
     }
-    
-    func endGame() {
-        firstLabel.isHidden = true
-        secondLabel.isHidden = true
-        thirdLabel.isHidden = true
-        fourthLabel.isHidden = true
-         nextRoundButton.setImage(UIImage(named: "play_again"), for: .normal)
-      
-        
-        
-    }
-    
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        //Test for shaking of device, stop timer and end the round
-        if motion == .motionShake {
-            timer.invalidate()
-            endRound()
-        }
-    }
-    
 }
 
