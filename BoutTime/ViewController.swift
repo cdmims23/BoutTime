@@ -23,11 +23,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var nextRoundButton: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
     
+    @IBOutlet weak var instructionLabel: UILabel!
     let game = GameModel()
     let rounds = 6
     var roundsPlayed = 0
     var timer: Timer = Timer()
     var time = 0
+    var score = 0
     var correctORder: [EventModel] = []
     var answerArray: [EventModel] = []
     
@@ -43,12 +45,15 @@ class ViewController: UIViewController {
     }
     
     func newRound() {
-        if roundsPlayed <= rounds {
+        if roundsPlayed < rounds {
             startTimer()
             let answerArrray = displayEvents()
             correctORder = game.correctOrder(events: answerArrray)
             updateTimer()
             nextRoundButton.isHidden = true
+        } else {
+            endGame()
+            
         }
     }
     
@@ -56,6 +61,7 @@ class ViewController: UIViewController {
         if firstLabel.text == correctORder[0].event && secondLabel.text == correctORder[1].event && thirdLabel.text == correctORder[2].event && fourthLabel.text == correctORder[3].event{
             nextRoundButton.setImage(UIImage(named: "next_round_success") , for: .normal)
             nextRoundButton.isHidden = false
+            score += 1
         } else {
             nextRoundButton.setImage(UIImage(named: "next_round_fail"), for: .normal)
             nextRoundButton.isHidden = false
@@ -95,6 +101,12 @@ class ViewController: UIViewController {
     @IBAction func submitgame(_ sender: Any) {
         time = 0
         newRound()
+        
+        if nextRoundButton.image(for: .normal) == UIImage(named: "play_again") {
+            newRound()
+        }
+        
+        
     }
     
     func startTimer() {
@@ -119,6 +131,27 @@ class ViewController: UIViewController {
         checkRound(checkArray: correctORder)
         timerLabel.text = "TIMES UP!"
         roundsPlayed += 1
+    }
+    
+    func endGame() {
+        firstLabel.isHidden = true
+        secondLabel.isHidden = true
+        thirdLabel.isHidden = true
+        fourthLabel.isHidden = true
+        firstLabelDown.isHidden = true
+        secondLabelUp.isHidden = true
+        secondLabelDown.isHidden = true
+        thirdLabelUp.isHidden = true
+        thirdLabelDown.isHidden = true
+        fourthLabelUp.isHidden = true
+        timerLabel.isHidden = true
+        
+        nextRoundButton.setImage(UIImage(named: "play_again"), for: .normal)
+        instructionLabel.text = "You won \(score) out of \(rounds) rounds"
+        
+        game.removeEvents()
+        roundsPlayed = 0
+        
     }
 }
 

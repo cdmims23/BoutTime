@@ -61,6 +61,10 @@ class GameModel {
         labelTwo.text = textOne
     }
     
+    func removeEvents() {
+        numbers.removeAll()
+    }
+    
     
 }
 
