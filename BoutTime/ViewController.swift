@@ -62,13 +62,16 @@ class ViewController: UIViewController {
             nextRoundButton.setImage(UIImage(named: "next_round_success") , for: .normal)
             nextRoundButton.isHidden = false
             score += 1
+            instructionLabel.text = "That's Correct"
         } else {
+            instructionLabel.text = "Sorry That's Incorrect"
             nextRoundButton.setImage(UIImage(named: "next_round_fail"), for: .normal)
             nextRoundButton.isHidden = false
         }
     }
     
     func displayEvents () -> [EventModel] {
+        instructionLabel.text = "Order the events from old to new."
         let firstEvent = game.getEvent()
         let secondEvent = game.getEvent()
         let thirdEvent = game.getEvent()
@@ -99,14 +102,27 @@ class ViewController: UIViewController {
     }
 
     @IBAction func submitgame(_ sender: Any) {
+        if nextRoundButton.image(for: .normal) == UIImage(named: "play_again") {
+            instructionLabel.text = ""
+            firstLabel.isHidden = false
+            secondLabel.isHidden = false
+            thirdLabel.isHidden = false
+            fourthLabel.isHidden = false
+            firstLabelDown.isHidden = false
+            secondLabelUp.isHidden = false
+            secondLabelDown.isHidden = false
+            thirdLabelUp.isHidden = false
+            thirdLabelDown.isHidden = false
+            fourthLabelUp.isHidden = false
+            timerLabel.isHidden = false
+
+            nextRoundButton.isHidden = false
+            time = 0
+            newRound()
+        } else {
         time = 0
         newRound()
-        
-        if nextRoundButton.image(for: .normal) == UIImage(named: "play_again") {
-            newRound()
         }
-        
-        
     }
     
     func startTimer() {
@@ -153,5 +169,14 @@ class ViewController: UIViewController {
         roundsPlayed = 0
         
     }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        //Test for shaking of device, stop timer and end the round
+        if motion == .motionShake {
+            timer.invalidate()
+            endRound()
+        }
+    }
 }
+
 
